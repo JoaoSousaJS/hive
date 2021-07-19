@@ -6,6 +6,8 @@ const start = async () => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+    user: 'root',
+    pass: 'root',
   }).then(() => {
     console.log('mongodb working');
   });

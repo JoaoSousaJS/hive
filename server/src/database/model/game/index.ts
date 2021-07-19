@@ -5,12 +5,12 @@ import { GameStatus } from '../../types/game-status';
 import { WonStatus } from '../../types/won-types';
 
 interface GameAttrs {
-  won: WonStatus
+  won?: WonStatus
   status: GameStatus
 }
 
 interface GameDocument extends Document {
-  won: WonStatus
+  won?: WonStatus
   status: GameStatus
 }
 
@@ -31,8 +31,8 @@ const gameSchema = new Schema<GameDocument, GameModel>({
   },
 });
 
-gameSchema.statics.build = () => new Game({
-  status: GameStatus.Open,
+gameSchema.statics.build = (attrs: GameAttrs) => new Game({
+  status: attrs.status,
 });
 
 export const Game = model<GameDocument, GameModel>('Game', gameSchema);

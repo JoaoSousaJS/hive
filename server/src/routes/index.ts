@@ -3,4 +3,4 @@ import { createGame } from '../controllers/game/create-game';
 
 export const gameRouter = express.Router();
 
-gameRouter.post('/api/game/', createGame);
+gameRouter.post('/api/game', createGame);
