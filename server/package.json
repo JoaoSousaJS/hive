@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
+    "mongoose": "^5.13.3",
     "ts-node-dev": "^1.1.8"
   },
   "devDependencies": {
