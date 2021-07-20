@@ -1,6 +1,11 @@
 import mongoose from 'mongoose';
 import { app } from './app';
 
+/*
+start mongodb and express server
+
+*/
+
 const start = async () => {
   await mongoose.connect('mongodb://db:27017', {
     useNewUrlParser: true,

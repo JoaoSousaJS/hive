@@ -1,38 +1,45 @@
 import {
  Document, model, Model, Schema,
 } from 'mongoose';
-import { GameStatus } from '../../types/game-status';
-import { WonStatus } from '../../types/won-types';
 
+/*
+defines what attributes will be required
+
+*/
 interface GameAttrs {
-  won?: WonStatus
-  status: GameStatus
+  won: string
 }
 
-interface GameDocument extends Document {
-  won?: WonStatus
-  status: GameStatus
+/*
+defines what attributes the document will have
+*/
+export interface GameDocument extends Document {
+  won: string
 }
 
+/*
+add custom build function to Model,
+this interface enables typescript with mongoose
+
+*/
 interface GameModel extends Model<GameDocument> {
   // eslint-disable-next-line no-unused-vars
   build(attrs: GameAttrs): GameDocument
 }
 
+/*
+create the schema
+
+*/
 const gameSchema = new Schema<GameDocument, GameModel>({
-  status: {
-    type: String,
-    required: true,
-    enum: [GameStatus],
-  },
   won: {
     type: String,
-    enum: [WonStatus],
+    required: true,
   },
 });
 
 gameSchema.statics.build = (attrs: GameAttrs) => new Game({
-  status: attrs.status,
+  won: attrs.won,
 });
 
 export const Game = model<GameDocument, GameModel>('Game', gameSchema);
